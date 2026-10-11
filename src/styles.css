@@ -1,0 +1,159 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Bona Nox — Editorial Elegante
+ * Brand colors: #060000 (ink), #ffebdf (cream), #cb5104 (ember)
+ * Fonts: Qwigley (logo), Antic Didone ~ Anicon (titles),
+ *        Sansita (subtitles/highlights), Hind ~ Clear Sans (body)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+  --color-ember: var(--ember);
+  --color-ember-soft: var(--ember-soft);
+
+  --font-logo: "Qwigley", cursive;
+  --font-display: "Antic Didone", "Cormorant Garamond", serif;
+  --font-heading: "Sansita", "Sansita Swashed", serif;
+  --font-body: "Hind", "Asap", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Brand tokens (HEX → OKLCH equivalents) */
+  --ink: oklch(0.12 0.02 25);            /* #060000 */
+  --cream: oklch(0.95 0.025 60);          /* #ffebdf */
+  --ember: oklch(0.58 0.165 45);          /* #cb5104 */
+  --ember-soft: oklch(0.72 0.12 50);
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+
+  --card: oklch(0.97 0.018 60);
+  --card-foreground: var(--ink);
+  --popover: var(--cream);
+  --popover-foreground: var(--ink);
+
+  --primary: var(--ink);
+  --primary-foreground: var(--cream);
+  --secondary: oklch(0.91 0.03 55);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.92 0.022 58);
+  --muted-foreground: oklch(0.42 0.03 30);
+  --accent: var(--ember);
+  --accent-foreground: var(--cream);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: var(--cream);
+  --border: oklch(0.85 0.025 45);
+  --input: oklch(0.88 0.022 50);
+  --ring: var(--ember);
+
+  --shadow-editorial: 0 30px 60px -25px color-mix(in oklab, var(--ink) 35%, transparent);
+  --shadow-soft: 0 10px 30px -15px color-mix(in oklab, var(--ink) 25%, transparent);
+  --gradient-ember: linear-gradient(135deg, var(--ember) 0%, oklch(0.66 0.18 35) 100%);
+  --gradient-night: linear-gradient(180deg, var(--ink) 0%, oklch(0.18 0.03 30) 100%);
+}
+
+.dark {
+  --background: var(--ink);
+  --foreground: var(--cream);
+  --card: oklch(0.16 0.02 25);
+  --card-foreground: var(--cream);
+  --popover: var(--ink);
+  --popover-foreground: var(--cream);
+  --primary: var(--cream);
+  --primary-foreground: var(--ink);
+  --secondary: oklch(0.2 0.025 30);
+  --secondary-foreground: var(--cream);
+  --muted: oklch(0.2 0.02 30);
+  --muted-foreground: oklch(0.7 0.03 50);
+  --accent: var(--ember);
+  --accent-foreground: var(--cream);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: var(--ember);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-feature-settings: "ss01", "ss02";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+  }
+  .font-logo { font-family: var(--font-logo); }
+  .font-display { font-family: var(--font-display); }
+  .font-heading { font-family: var(--font-heading); }
+  .font-body { font-family: var(--font-body); }
+
+  /* Editorial accents */
+  .rule {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--ink), transparent);
+    opacity: 0.4;
+  }
+  .ember-underline {
+    background-image: linear-gradient(var(--ember), var(--ember));
+    background-size: 100% 2px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    padding-bottom: 2px;
+  }
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    background-image: radial-gradient(rgba(6,0,0,0.6) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+}
