@@ -23,7 +23,11 @@ export const Route = createFileRoute("/")({
   }),
   loader: ({ context }) => context.queryClient.ensureQueryData(worksQuery),
   component: Index,
-  errorComponent: ({ error }) => <div className="p-10">{error.message}</div>,
+  errorComponent: ({ error }) => (
+  <div className="p-10">
+    {error instanceof Error ? error.message : "Ocurrió un error inesperado."}
+  </div>
+),
   notFoundComponent: () => <div className="p-10">No encontrado</div>,
 });
 

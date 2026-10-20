@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import logo from "@/assets/Bona-nox-icon.svg";
+import logo from "@/assets/bona-nox-icon.svg";
 import { SectionTitle } from "@/components/Editorial";
 
 export const Route = createFileRoute("/about")({
